@@ -1,7 +1,6 @@
-# LethalCompanyTemplate
+# Weighted Beltbag
 
-[![](https://img.shields.io/badge/YourThunderstoreTeam-Template-blue?logo=thunderstore)](https://thunderstore.io/c/lethal-company/p/YourThunderstoreTeam/Template/)
 
-Template to create Lethal Company plugins.
+Mod that changes Beltbag to cause you to gain weight upon collecting items inside it and lose weight upon removing items.
 
-If you want to create your own plugin with this template, check the [wiki](https://github.com/Distractic/LethalCompanyTemplate/wiki).
+Link to the github [repo](https://github.com/bluexephops/Weighted-Belt-Bag).
