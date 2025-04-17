@@ -22,7 +22,7 @@
         <!-- Version of the game supported by the plugin -->
         <!-- The value must be the same than the one in CI/CD -->
         <!-- https://www.nuget.org/packages/LethalCompany.GameLibs.Steam -->
-        <GameVersion>49.0.0-alpha.1</GameVersion>
+        <GameVersion>69.0.1-ngd.0</GameVersion>
     </PropertyGroup>
 
     <ItemGroup>
