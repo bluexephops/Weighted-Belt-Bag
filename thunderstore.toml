@@ -5,9 +5,9 @@ schemaVersion = "0.0.1"
 repository = "https://thunderstore.io"
 
 [package]
-namespace = "YourThunderstoreTeam"
-name = "Template"
-description = "A template for Lethal Company plugins."
+namespace = "bluexephops"
+name = "Weighted Belt Bag"
+description = "A mod to make items weighted inside the belt bag."
 websiteUrl = "https://github.com/Distractic/LethalCompanyTemplate"
 containsNsfwContent = false
 
@@ -37,4 +37,4 @@ communities = ["lethal-company"]
 
 [publish.categories]
 # The categories are available at https://thunderstore.io near of the search bar
-lethal-company = ["bepinex", "mods"]
+lethal-company = ["bepinex", "mods", "Equipment"]

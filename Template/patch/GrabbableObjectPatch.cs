@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace YourThunderstoreTeam.patch;
+namespace bluexephops.patch;
 [HarmonyPatch(typeof(GrabbableObject))]
 
 public class GrabbableObjectPatch

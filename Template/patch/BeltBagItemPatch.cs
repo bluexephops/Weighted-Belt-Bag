@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace YourThunderstoreTeam.patch;
+namespace bluexephops.patch;
 
 [HarmonyPatch(typeof(BeltBagItem))]
 
