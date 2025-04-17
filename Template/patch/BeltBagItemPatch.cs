@@ -17,8 +17,16 @@ public class BeltBagItemPatch
     {
         
         GrabbableObject grabbableObject = (GrabbableObject)__args[0];
-        HUDManager.Instance.AddTextToChatOnServer("Adding to bag Weight:" + grabbableObject.itemProperties.weight);
+        //Add object weight to the belt bag's weight, subtracting 1 due to weight on objects being stored with with 1+object weight
         __instance.itemProperties.weight += grabbableObject.itemProperties.weight - 1;
+        //Reset carry weight to 0 and readd the weights of the items due to weight not updating dynamically
+        __instance.playerHeldBy.carryWeight = 0;
+        for(int i = 0; i < 4; ++i)
+        {
+            if(__instance.playerHeldBy.ItemSlots[i])
+                __instance.playerHeldBy.carryWeight += __instance.playerHeldBy.ItemSlots[i].itemProperties.weight;
+        }
+        
         
         return true;
     }
