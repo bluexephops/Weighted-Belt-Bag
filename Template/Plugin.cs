@@ -36,8 +36,6 @@ public class Plugin : BaseUnityPlugin
     /// </summary>
     private void ApplyPluginPatch()
     {
-        _harmony.PatchAll(typeof(ShipLightsPatch));
-        _harmony.PatchAll(typeof(PlayerControllerBPatch));
         _harmony.PatchAll(typeof(BeltBagItemPatch));
         _harmony.PatchAll(typeof(GrabbableObjectPatch));
     }
