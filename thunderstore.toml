@@ -8,7 +8,7 @@ repository = "https://thunderstore.io"
 namespace = "bluexephops"
 name = "Weighted Belt Bag"
 description = "A mod to make items weighted inside the belt bag."
-websiteUrl = "https://github.com/Distractic/LethalCompanyTemplate"
+websiteUrl = "https://github.com/bluexephops/Weighted-Belt-Bag"
 containsNsfwContent = false
 
 [package.dependencies]
