@@ -48,7 +48,7 @@ public class GrabbableObjectPatch
             {
                 for (int i = 0; i < beltBag.objectsInBag.Count; i++)
                 {
-                    //subtracting one from the weight of the items due to how they are stored
+                    //subtracting one from the weight of the items due to how they are stored, clamping to prevent weight going over the limit
                     beltBag.playerHeldBy.carryWeight = Mathf.Clamp(beltBag.playerHeldBy.carryWeight + beltBag.objectsInBag[i].itemProperties.weight - 1, 1f, 10f);
                 }
             }
