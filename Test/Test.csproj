@@ -21,6 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Template\WeightedBeltBag.csproj" />
+        <ProjectReference Include="..\WeightedBeltBag\WeightedBeltBag.csproj" />
     </ItemGroup>
 </Project>

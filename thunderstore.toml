@@ -21,8 +21,8 @@ readme = "README.md"
 outdir = "build"
 
 [[build.copy]]
-source = "Template/bin/Template.dll"
-target = "BepInEx/plugins/Template.dll"
+source = "Template/bin/WeightedBeltBag.dll"
+target = "BepInEx/plugins/WeightedBeltBag.dll"
 
 [[build.copy]]
 source = "CHANGELOG.md"

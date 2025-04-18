@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 
 namespace bluexephops.patch;
 [HarmonyPatch(typeof(GrabbableObject))]
@@ -21,7 +22,12 @@ public class GrabbableObjectPatch
                 for (int i = 0; i < beltBag.objectsInBag.Count; i++)
                 {
                     //subtracting one from the weight of the items due to how they are stored
-                    beltBag.playerHeldBy.carryWeight -= beltBag.objectsInBag[i].itemProperties.weight - 1;
+                    if(beltBag.playerHeldBy.carryWeight - beltBag.objectsInBag[i].itemProperties.weight - 1 > 0)
+                        beltBag.playerHeldBy.carryWeight -= beltBag.objectsInBag[i].itemProperties.weight - 1;
+                    else
+                    {
+                        __instance.playerHeldBy.carryWeight = 1f;
+                    }
                 }
             }
             
@@ -42,7 +48,7 @@ public class GrabbableObjectPatch
                 for (int i = 0; i < beltBag.objectsInBag.Count; i++)
                 {
                     //subtracting one from the weight of the items due to how they are stored
-                    beltBag.playerHeldBy.carryWeight += beltBag.objectsInBag[i].itemProperties.weight - 1;
+                    beltBag.playerHeldBy.carryWeight = Mathf.Clamp(beltBag.playerHeldBy.carryWeight + beltBag.objectsInBag[i].itemProperties.weight - 1, 1f, 10f);
                 }
             }
 

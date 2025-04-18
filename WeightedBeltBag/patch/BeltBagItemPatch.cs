@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace bluexephops.patch;
 
@@ -14,8 +15,9 @@ public class BeltBagItemPatch
         GrabbableObject grabbableObject = (GrabbableObject)__args[0];
         if(grabbableObject)
         {
-            //Add object weight to the player's weight, subtracting 1 due to weight on objects being stored with with 1+object weight
-            __instance.playerHeldBy.carryWeight += grabbableObject.itemProperties.weight - 1;
+            //Add object weight to the player's weight, subtracting 1 due to weight on objects being stored with with 1+object weight, clamping to make sure it doesn't go over the max
+            __instance.playerHeldBy.carryWeight = Mathf.Clamp(__instance.playerHeldBy.carryWeight + grabbableObject.itemProperties.weight - 1, 1f, 10f);
+           
         }
         return true;
     }
@@ -30,7 +32,12 @@ public class BeltBagItemPatch
         if (grabbableObject)
         {
             //subtract the item's weight to the player's weight, subtracting 1 due to how it is stored
-            __instance.playerHeldBy.carryWeight -= grabbableObject.itemProperties.weight - 1;
+            if (__instance.playerHeldBy.carryWeight - grabbableObject.itemProperties.weight - 1 > 0)
+                __instance.playerHeldBy.carryWeight -= grabbableObject.itemProperties.weight - 1;
+            else
+                { 
+                __instance.playerHeldBy.carryWeight = __instance.itemProperties.weight; 
+            }
         }
         return true;
     }
