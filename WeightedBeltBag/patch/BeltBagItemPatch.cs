@@ -16,7 +16,7 @@ public class BeltBagItemPatch
         if(grabbableObject)
         {
             //Add object weight to the player's weight, subtracting 1 due to weight on objects being stored with with 1+object weight, clamping to make sure it doesn't go over the max
-            __instance.playerHeldBy.carryWeight = Mathf.Clamp(__instance.playerHeldBy.carryWeight + grabbableObject.itemProperties.weight - 1, 1f, 10f);
+            __instance.playerHeldBy.carryWeight = Mathf.Clamp(__instance.playerHeldBy.carryWeight + ((grabbableObject.itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value), 1f, 10f);
            
         }
         return true;
@@ -32,8 +32,8 @@ public class BeltBagItemPatch
         if (grabbableObject)
         {
             //subtract the item's weight to the player's weight, subtracting 1 due to how it is stored
-            if (__instance.playerHeldBy.carryWeight - grabbableObject.itemProperties.weight >= 0.0f)
-                __instance.playerHeldBy.carryWeight -= grabbableObject.itemProperties.weight - 1.0f;
+            if (__instance.playerHeldBy.carryWeight - ((grabbableObject.itemProperties.weight) * Plugin.BoundConfig.configPercent.Value) >= 0.0f)
+                __instance.playerHeldBy.carryWeight -= ((grabbableObject.itemProperties.weight - 1.0f) * Plugin.BoundConfig.configPercent.Value);
             //if you reached the clamp, trying to drop more weight than you have causes you to go negative. This prevents that
             else
                 { 

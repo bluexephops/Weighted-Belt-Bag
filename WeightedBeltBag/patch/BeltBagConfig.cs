@@ -17,7 +17,7 @@ namespace bluexephops.patch
            "General",
            "Percentage of weight",
            1.0f,
-           "Percentage of the item's weight to use for the belt bag"
+           "Percentage of the item's weight to use for the belt bag (1 is 100%)"
            );
             ClearOrphanedEntries(config);
             config.Save();
