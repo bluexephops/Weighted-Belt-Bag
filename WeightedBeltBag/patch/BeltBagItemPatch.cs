@@ -32,8 +32,9 @@ public class BeltBagItemPatch
         if (grabbableObject)
         {
             //subtract the item's weight to the player's weight, subtracting 1 due to how it is stored
-            if (__instance.playerHeldBy.carryWeight - grabbableObject.itemProperties.weight - 1 > 0)
-                __instance.playerHeldBy.carryWeight -= grabbableObject.itemProperties.weight - 1;
+            if (__instance.playerHeldBy.carryWeight - grabbableObject.itemProperties.weight >= 0.0f)
+                __instance.playerHeldBy.carryWeight -= grabbableObject.itemProperties.weight - 1.0f;
+            //if you reached the clamp, trying to drop more weight than you have causes you to go negative. This prevents that
             else
                 { 
                 __instance.playerHeldBy.carryWeight = __instance.itemProperties.weight; 

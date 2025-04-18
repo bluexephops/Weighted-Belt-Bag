@@ -2,7 +2,6 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using bluexephops.patch;
-using bluexephops.service;
 
 namespace bluexephops;
 
@@ -15,7 +14,6 @@ public class Plugin : BaseUnityPlugin
 
     private readonly Harmony _harmony = new(PluginInfo.PLUGIN_GUID);
 
-    public TemplateService Service;
 
     public Plugin()
     {
@@ -24,7 +22,6 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
-        Service = new TemplateService();
 
         Log.LogInfo($"Applying patches...");
         ApplyPluginPatch();
