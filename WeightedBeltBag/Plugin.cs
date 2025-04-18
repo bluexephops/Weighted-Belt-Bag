@@ -19,10 +19,10 @@ public class Plugin : BaseUnityPlugin
     {
         Instance = this;
     }
-
+    internal static BeltBagConfig BoundConfig { get; private set; } = null!;
     private void Awake()
     {
-
+        BoundConfig = new BeltBagConfig(base.Config);
         Log.LogInfo($"Applying patches...");
         ApplyPluginPatch();
         Log.LogInfo($"Patches applied");
