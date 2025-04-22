@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 (2025-4-22)
+
+### Features
+
+Made config cause weight of items in bag to change ([ecbe785]) https://github.com/bluexephops/Weighted-Belt-Bag/commit/ecbe7854b6fa7c4f2d7e50282756a42deddb5a91
+Added Csync as a dependency and synced config files. ([a570493]) https://github.com/bluexephops/Weighted-Belt-Bag/commit/a57049332e69cfd2d090e6fd441f3cd57fef8b25 
+
+
+
 
 ## 1.0.0 (2025-04-17)
 
