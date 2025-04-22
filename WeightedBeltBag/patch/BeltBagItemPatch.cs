@@ -17,7 +17,6 @@ public class BeltBagItemPatch
         {
             //Add object weight to the player's weight, subtracting 1 due to weight on objects being stored with with 1+object weight, clamping to make sure it doesn't go over the max
             __instance.playerHeldBy.carryWeight = Mathf.Clamp(__instance.playerHeldBy.carryWeight + ((grabbableObject.itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value), 1f, 10f);
-           
         }
         return true;
     }

@@ -1,26 +1,29 @@
 ﻿using BepInEx.Configuration;
+using CSync.Extensions;
+using CSync.Lib;
 using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace bluexephops.patch
 {
-    internal class BeltBagConfig
+    internal class BeltBagConfig : SyncedConfig2<BeltBagConfig>
     {
-        public readonly ConfigEntry<float> configPercent;
+        [SyncedEntryField] public SyncedEntry<float> configPercent;
 
 
-        public BeltBagConfig(ConfigFile config)
+        public BeltBagConfig(ConfigFile config) : base("bluexephops.Plugin.Guid")
         {
+
             config.SaveOnConfigSet = false;
-           configPercent = config.Bind(
-           "General",
-           "Percentage of weight",
-           1.0f,
-           "Percentage of the item's weight to use for the belt bag (1 is 100%)"
-           );
+            configPercent = config.BindSyncedEntry(
+                new ConfigDefinition("General", "Percentage of weight"),
+            1.0f,
+             new ConfigDescription("Percentage of the item's weight to use for the belt bag (1 is 100%).")
+            );
             ClearOrphanedEntries(config);
             config.Save();
+            ConfigManager.Register(this);
         }
 
         static void ClearOrphanedEntries(ConfigFile config)
