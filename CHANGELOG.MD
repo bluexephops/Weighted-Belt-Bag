@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.1 (2025-4-29)
+
+### Bug Fixes
+
+Fixed bug causing removing items from another player's bag not properly updating weight ([74a1e77]) https://github.com/bluexephops/Weighted-Belt-Bag/commit/74a1e77b0572e392aa7ba4aeedf9b5fed5133493
+
+
+
 ## 1.1.0 (2025-4-22)
 
 ### Features
