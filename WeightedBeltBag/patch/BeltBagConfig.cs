@@ -11,7 +11,6 @@ namespace bluexephops.patch
     {
         [SyncedEntryField] public SyncedEntry<float> configPercent;
 
-
         public BeltBagConfig(ConfigFile config) : base("bluexephops.Plugin.Guid")
         {
 

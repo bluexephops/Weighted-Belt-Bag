@@ -49,7 +49,6 @@ public class GrabbableObjectPatch
                     beltBag.playerHeldBy.carryWeight = Mathf.Clamp(beltBag.playerHeldBy.carryWeight + ((beltBag.objectsInBag[i].itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value), 1f, 10f);
                 }
             }
-
         }
         return true;
     }

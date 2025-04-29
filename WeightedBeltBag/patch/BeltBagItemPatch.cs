@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace bluexephops.patch;
@@ -26,6 +27,7 @@ public class BeltBagItemPatch
     private static bool OnRemoveFromBag(ref BeltBagItem __instance,object[] __args)
     {
         //get the object from the belt bag's list using the passed in item id
+        
         int itemId = (int)__args[0];
         GrabbableObject grabbableObject = __instance.objectsInBag[itemId];
         if (grabbableObject)
@@ -42,5 +44,33 @@ public class BeltBagItemPatch
         return true;
     }
 
+    [HarmonyPatch(nameof(BeltBagItem.RemoveFromBagLocalClient))]
+    [HarmonyPrefix]
+    private static bool OnRemoveFromOtherBag(ref BeltBagItem __instance, object[] __args)
+    {
+        //since removing from another person's belt bag on client doesn't affect weight, you have to use the network object to be able to remove weight
+        NetworkObjectReference objectReference = (NetworkObjectReference)__args[0];
+        GrabbableObject grabbableObject = null;
+        if (objectReference.TryGet(out var networkObject))
+        {
+            for (int i = 0; i < __instance.objectsInBag.Count; i++)
+            {
+                //if the network object is the bagged item in the current slot
+                if (__instance.objectsInBag[i].NetworkObject == networkObject)
+                {
+                    grabbableObject = __instance.objectsInBag[i];
+                    //subtract the item's weight to the player's weight, subtracting 1 due to how it is stored
+                    if (__instance.playerHeldBy.carryWeight - ((grabbableObject.itemProperties.weight) * Plugin.BoundConfig.configPercent.Value) >= 0.0f)
+                        __instance.playerHeldBy.carryWeight -= ((grabbableObject.itemProperties.weight - 1.0f) * Plugin.BoundConfig.configPercent.Value);
+                    //if you reached the clamp, trying to drop more weight than you have causes you to go negative. This prevents that
+                    else
+                    {
+                        __instance.playerHeldBy.carryWeight = __instance.itemProperties.weight;
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }
 
