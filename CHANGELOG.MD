@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2 (2025-5-12)
+
+## Bug Fixes
+
+Fixed bug caused by ([74a1e77]) that doubled the weight when dropped ([697e944]) https://github.com/bluexephops/Weighted-Belt-Bag/commit/697e94414753336e78ce8cf586346be15f17e3aa
+
 ## 1.1.1 (2025-4-29)
 
 ### Bug Fixes
