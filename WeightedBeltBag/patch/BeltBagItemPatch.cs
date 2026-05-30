@@ -14,10 +14,12 @@ public class BeltBagItemPatch
     {
         
         GrabbableObject grabbableObject = (GrabbableObject)__args[0];
-        if(grabbableObject)
+        if (grabbableObject)
         {
+            HUDManager.Instance.AddTextToChatOnServer("Grabbable Object found");
             //Add object weight to the player's weight, subtracting 1 due to weight on objects being stored with with 1+object weight, clamping to make sure it doesn't go over the max
             __instance.playerHeldBy.carryWeight = Mathf.Clamp(__instance.playerHeldBy.carryWeight + ((grabbableObject.itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value), 1f, 10f);
+            HUDManager.Instance.UpdateWeightCounter();
         }
         return true;
     }
@@ -39,11 +41,16 @@ public class BeltBagItemPatch
                     grabbableObject = __instance.objectsInBag[i];
                     //subtract the item's weight to the player's weight, subtracting 1 due to how it is stored
                     if (__instance.playerHeldBy.carryWeight - ((grabbableObject.itemProperties.weight) * Plugin.BoundConfig.configPercent.Value) >= 0.0f)
+                    {
                         __instance.playerHeldBy.carryWeight -= ((grabbableObject.itemProperties.weight - 1.0f) * Plugin.BoundConfig.configPercent.Value);
+                        HUDManager.Instance.UpdateWeightCounter();
+                    }
+
                     //if you reached the clamp, trying to drop more weight than you have causes you to go negative. This prevents that
                     else
                     {
                         __instance.playerHeldBy.carryWeight = __instance.itemProperties.weight;
+                        HUDManager.Instance.UpdateWeightCounter();
                     }
                 }
             }

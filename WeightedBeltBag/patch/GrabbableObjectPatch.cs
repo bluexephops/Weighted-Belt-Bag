@@ -20,11 +20,16 @@ public class GrabbableObjectPatch
                 {
                     //subtracting one from the weight of the items due to how they are stored
                     if(beltBag.playerHeldBy.carryWeight - ((beltBag.objectsInBag[i].itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value) >= 0)
+                    {
                         beltBag.playerHeldBy.carryWeight -= ((beltBag.objectsInBag[i].itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value);
+                        HUDManager.Instance.UpdateWeightCounter();
+                    }
+
                     //if you reached the clamp, trying to drop more weight than you have causes you to go negative. This prevents that
                     else
                     {
                         __instance.playerHeldBy.carryWeight = 1f;
+                        HUDManager.Instance.UpdateWeightCounter();
                     }
                 }
             }
@@ -47,6 +52,7 @@ public class GrabbableObjectPatch
                 {
                     //subtracting one from the weight of the items due to how they are stored, clamping to prevent weight going over the limit
                     beltBag.playerHeldBy.carryWeight = Mathf.Clamp(beltBag.playerHeldBy.carryWeight + ((beltBag.objectsInBag[i].itemProperties.weight - 1) * Plugin.BoundConfig.configPercent.Value), 1f, 10f);
+                    HUDManager.Instance.UpdateWeightCounter();
                 }
             }
         }
