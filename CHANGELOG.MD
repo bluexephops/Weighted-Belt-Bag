@@ -1,5 +1,10 @@
 # Changelog
+## 1.1.3 (2026-5-31)
 
+## Bug Fixes
+
+Fixed bug when dropping items from the belt bag in elevators ([cc37943])
+updated code for new Hud ([50cab03])
 ## 1.1.2 (2025-5-12)
 
 ## Bug Fixes
